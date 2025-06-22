@@ -20,8 +20,8 @@ This project uses a trained deep learning model (`.h5`) to classify and predict 
 
 ```bash
 git lfs install          # run once per system
-git clone https://github.com/ROBIN-M-P/test.git
-cd test
+git clone https://github.com/ROBIN-M-P/Eye-Disease-Prediction-using-Deep-Learning.git
+cd Eye-Disease-Prediction-using-Deep-Learning
 ```
 
 ### 2️⃣ Set up the environment
@@ -64,7 +64,7 @@ See **`requirements.txt`** or **`environment.yml`** for the full, pinned list.
 ## 📂 Project Structure
 
 ```text
-test/
+Eye-Disease-Prediction-using-Deep-Learning/
 ├── Human_Eye_Disease_Prediction/
 │   ├── app.py
 │   ├── recommendation.py
