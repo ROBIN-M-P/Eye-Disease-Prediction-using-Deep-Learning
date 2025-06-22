@@ -1,13 +1,14 @@
 Eye Disease Prediction using Deep Learning – Full Setup Guide
 
-Human Eye Disease Prediction using Deep Learning
+👁️ Human Eye Disease Prediction using Deep Learning
 This project uses a trained deep learning model (.h5) to classify and predict eye diseases from OCT (Optical Coherence Tomography) images through an interactive Streamlit web application.
+
 🚀 Features
 ✅ TensorFlow‑based trained .h5 model
 ✅ Streamlit web interface for instant predictions
-✅ Upload OCT retinal images for real-time classification
+✅ Upload OCT retinal images
 ✅ Python 3.10 + TensorFlow 2.13 support
-✅ Git LFS support for handling large model files
+✅ Git LFS support for large model files
 🖥️ How to Run (Verified Setup)
 ✅ 1. Clone the Repository with Git LFS
 sudo apt update && sudo apt install -y git-lfs
@@ -43,44 +44,49 @@ Eye-Disease-Prediction-using-Deep-Learning/
 The Trained_Model.h5 file was saved with TensorFlow 2.13 and Keras 2.x.
 Keras 3 (bundled with TF ≥ 2.18) refuses layer names that contain slashes (e.g. “Conv/BatchNorm”).
 Running the model therefore requires the last Keras 2.x release, which in turn is only compiled for Python 3.10 or lower.
+
 2. Why Git LFS
 The model weighs ≈ 64 MB. Git Large File Storage keeps the main repo light and downloads the weight file on demand.
-Always run `git lfs install` once per machine and `git lfs pull` inside the repo to fetch the actual .h5.
+Always run git lfs install once per machine and git lfs pull inside the repo to fetch the actual .h5.
+
 3. Quick Setup – Ubuntu 24.04 / GitHub Codespaces
-# Install Python 3.10
+# 1. Install Python 3.10
 sudo apt update && sudo apt install -y software-properties-common
 sudo add-apt-repository ppa:deadsnakes/ppa && sudo apt update
 sudo apt install -y python3.10 python3.10-venv python3.10-distutils
 
-# Create a virtual environment
+# 2. Create a virtual environment
 python3.10 -m venv .venv310 && source .venv310/bin/activate
 
-# Install dependencies
+# 3. Install dependencies
 pip install --upgrade pip
 pip install tensorflow==2.13.0 streamlit pillow
 
-# Fetch model
+# 4. Fetch model
 git lfs install && git lfs pull
 
-# Run app
+# 5. Run app
 streamlit run Human_Eye_Disease_Prediction/app.py
 4. Setup – Windows 10/11 (Anaconda)
+Install Anaconda or Miniconda.
+Create environment:
 conda create -n eyepred python=3.10 tensorflow=2.13 streamlit pillow git-lfs
 conda activate eyepred
+Clone repo with Git LFS enabled, then run the app with Streamlit.
 5. Setup – macOS
-Install Homebrew + Python 3.10 (`brew install python@3.10`) or use Conda.
+Install Homebrew + Python 3.10 (brew install python@3.10) or use Conda.
 Follow the Linux steps from section 3.
 6. Optional: Convert Model for Keras 3+
+Use the TF 2.13 environment to convert your model:
+
 import tensorflow as tf
 m = tf.keras.models.load_model('Trained_Model.h5')
 m.save('RetinoScan.keras', save_format='keras_v3')
+Then in TF ≥ 2.18:
 
-# Then in TF ≥ 2.18
 tf.keras.models.load_model('RetinoScan.keras', safe_mode=False)
 7. Troubleshooting
-• `file signature not found` → run `git lfs pull`
-• `name cannot contain character '/'` → You’re on Keras 3; either switch to TF 2.13 or use the converted model.
+file signature not found → run git lfs pull
+name cannot contain character '/' → You’re on Keras 3; either switch to TF 2.13 or use the converted model.
 👨‍💻 Author
-ROBIN M P  
-Bengaluru, India  
-[GitHub Profile](https://github.com/ROBIN-M-P)
+ROBIN M P
