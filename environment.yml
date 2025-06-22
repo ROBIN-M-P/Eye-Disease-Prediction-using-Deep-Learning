@@ -1,0 +1,11 @@
+name: tf213-env
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+  - python=3.10
+  - pip
+  - pip:
+      - tensorflow==2.13.0
+      - streamlit==1.46.0
+      - pillow==11.2.1
