@@ -61,9 +61,23 @@ def page_about():
     st.header("About")
     st.write(
         """
-        This app demonstrates an OCT classifier trained on **84 k** images
-        (Normal, CNV, DME, Drusen). Images were triple-graded by ophthalmology
-        experts to ensure label reliability.
+        ## 📖 About
+
+        This application is a deep learning-based diagnostic tool designed to analyze **Optical Coherence Tomography (OCT)** retina scans. It classifies input images into one of the following categories:
+
+        - **CNV** – Choroidal Neovascularization  
+        - **DME** – Diabetic Macular Edema  
+        - **Drusen** – Yellow deposits under the retina  
+        - **Normal**
+
+        The model was trained on a dataset of over **84,000 expert-labeled OCT images**, where each image was **triple-graded by licensed ophthalmologists** to ensure annotation reliability and clinical relevance.
+
+        Developed with:
+        - **TensorFlow 2.13 & Keras 2.x** for model loading and inference  
+        - **Streamlit** for a user-friendly web interface  
+        - **Git LFS** for efficient handling of large `.h5` model files
+
+        Users can simply upload an OCT image and instantly receive a prediction, aiding **early diagnosis and screening** of common retinal conditions.
         """
     )
 
