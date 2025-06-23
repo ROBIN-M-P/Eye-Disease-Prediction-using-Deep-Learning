@@ -6,19 +6,24 @@ pipeline {
         stage('Checkout Code & Git LFS') {
             steps {
                 script {
-                    // Explicitly define a standard PATH to avoid environmental issues
-                    withEnv(["PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"]) {
-                        sh 'sudo apt update && sudo apt install -y git-lfs'
-                        sh 'git lfs install --force' // Keep the --force
-                    }
+                    // Ensure git-lfs is installed on the agent
+                    // We will keep apt install as a general prerequisite
+                    sh 'sudo apt update && sudo apt install -y git-lfs'
+
+                    // REMOVED: sh 'git lfs install --force'
+                    // The `git lfs pull` command below can work without the install hooks
+                    // as long as git-lfs is installed on the system.
+
                     // Clone the repository
                     git branch: 'main', url: 'https://github.com/ROBIN-M-P/Eye-Disease-Prediction-using-Deep-Learning.git'
 
                     // Download Git LFS files (the .h5 model)
+                    // This is the crucial step that actually fetches the LFS content.
                     sh 'cd Human_Eye_Disease_Prediction && git lfs pull && cd ..'
                 }
             }
         }
+        // ... rest of your stages remain the same ...
         stage('Prepare Environment & Install Dependencies') {
             steps {
                 script {
