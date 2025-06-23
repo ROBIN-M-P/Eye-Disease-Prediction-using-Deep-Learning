@@ -47,7 +47,6 @@ pipeline {
         stage('Build/Package') {
             steps {
                 script {
-                    // Use bash for this script block
                     sh '''#!/bin/bash
                         source .venv310/bin/activate
                         zip -r eye_disease_app.zip . -x ".venv310/*" -x ".git/*" -x "__pycache__/*" -x "venv/*"
@@ -55,6 +54,15 @@ pipeline {
                     '''
                 }
             }
+            // >>>>>>>>>>>>>> IMPORTANT ADDITION HERE <<<<<<<<<<<<<<
+            // This 'post' block ensures the zip file is archived by Jenkins
+            // even if cleanWs() runs later.
+            post {
+                success {
+                    archiveArtifacts artifacts: 'eye_disease_app.zip', fingerprint: true
+                }
+            }
+            // >>>>>>>>>>>>>> END OF ADDITION <<<<<<<<<<<<<<
         }
         stage('Run Streamlit App (Manual/Deployment Example)') {
             steps {
