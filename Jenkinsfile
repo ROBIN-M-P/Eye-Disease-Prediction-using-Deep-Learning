@@ -8,7 +8,7 @@ pipeline {
                 script {
                     // Ensure git-lfs is installed on the agent
                     sh 'sudo apt update && sudo apt install -y git-lfs'
-                    sh 'git lfs install'
+                    sh 'git lfs install --force'
 
                     // Clone the repository
                     git branch: 'main', url: 'https://github.com/ROBIN-M-P/Eye-Disease-Prediction-using-Deep-Learning.git'
